@@ -2,13 +2,12 @@ image: node:8-alpine
 
 cache:
   paths:
-  - node_modules/
-
-before_script:
-  - npm i -g yarn
-  - yarn
+    - node_modules/
 
 build:
+  before_script:
+    - npm i -g yarn
+    - yarn
   script:
     - yarn run lint
     - yarn run build
@@ -16,7 +15,6 @@ build:
 
 code_quality:
   image: docker:stable
-  stage: code-quality
   variables:
     DOCKER_DRIVER: overlay2
   allow_failure: true
